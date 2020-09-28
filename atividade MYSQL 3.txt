@@ -1,0 +1,53 @@
+create database db_cidade_das_carnes;
+
+use db_cidade_das_carnes;
+
+create table tb_categorias(
+id_categoria bigint auto_increment,
+qualidade varchar(20) not null,
+quantidade varchar(20) not null,
+primary key (id_categoria)
+
+);
+
+use db_cidade_das_carnes;
+
+
+create table tb_produtos(
+id bigint auto_increment,
+nome_carne varchar(20) not null,
+marca_carne varchar(20) not null,
+categoria_id bigint not null,
+valor decimal not null,
+primary key (id),
+ foreign key (categoria_id) references tb_categorias (id_categoria)
+ 
+ );
+ 
+
+insert into tb_categorias (qualidade, quantidade) values ("sim", "dez pecas");
+ insert into tb_categorias (qualidade, quantidade) values ("sim", "trinta pecas");
+ insert into tb_categorias (qualidade, quantidade) values ("sim", "sessenta pecas");
+ 
+ select * from tb_categorias;
+
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("picanha", "friboi", 1, 6999);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("contra file", "seara", 2, 6999);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("alcatra", "casa do boi", 3, 5990);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("coxao mole", "boi bom", 4, 5950);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("coxao duro", "casa do boi", 1, 4990);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("patinho", "boibom", 2, 3689);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("bisteca", "carne boa", 4, 3999);
+insert into tb_produtos (nome_carne, marca_carne, categoria_id, valor) values ("lagarto", "friboi", 3, 3539);
+
+select * from tb_produtos;
+
+select * from tb_produtos where valor > 30 and valor < 6000;
+
+select * from tb_produtos where nome_carne like "%co%";
+
+
+select * from tb_produtos
+   inner join tb_categorias on tb_categorias.id_categoria = tb_produtos.categoria_id;
+   
+   select * from tb_produtos where id = 3
